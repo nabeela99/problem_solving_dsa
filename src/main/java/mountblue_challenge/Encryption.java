@@ -9,49 +9,31 @@ import java.util.stream.Stream;
 
 public class Encryption {
     public static void main(String[] args) {
-        String s = "chillout";
+        String s = "feedthedog";
         System.out.println(encryption(s));
     }
     public static String encryption(String s) {
-        String st = s.replace(" ", "");
-        int length = st.length();
-        double val = Math.sqrt(length);
-        int col = (int) Math.ceil(val);
-        int row = (int) Math.floor(val);
-        int count = 0;
-        while (row * col < length){
+        double rt = Math.sqrt(s.length());
+        int row = (int) Math.floor(rt);
+        int col = (int) Math.ceil(rt);
+        int mul = row * col;
+        if (mul <= s.length()){
             row = row + 1;
-            count++;
         }
-        int i = 0;
-        int j = 0;
-        String sb = "";
-        String res = "";
-        List<List<Character>> arr = new ArrayList<>();
-        List<String> resl = new ArrayList<>();
-        char [] c = new char[row];
-        while (i < st.length()) {
-            if ((col + i) <= length) {
-                sb = st.substring(i, col + i);
-                arr.add(Stream.of(sb.toString()).map(s1 -> s1.charAt(0)).collect(Collectors.toList()));
-            }else {
-                sb = st.substring(i, length);
-                arr.add(Stream.of(sb.toString()).map(s1 -> s1.charAt(0)).collect(Collectors.toList()));
-                }
-            i = i+col;
+        return collection(s,0,col,row);
+    }
+    static StringBuilder sb = new StringBuilder();
+    public static String collection(String s,int i,int col,int row){
+        if (i == col){
+            return sb.toString();
         }
-        System.out.println(arr);
-//        int k = 0;
-//        while (k < col){
-//            for (j = 0 ; j < row ; j++){
-//                c[j] = arr.get(j).charAt(k);
-//            }
-//            for (j = 0 ; j < c.length ; j++){
-//                res += c[j] + "";
-//            }
-//            res = res + " ";
-//            k++;
-//        }
-        return res;
+        int j = i;
+        while (j < s.length()){
+            sb.append(s.charAt(j));
+            j = j + col;
+        }
+        sb.append(" ");
+        i = i+1;
+        return collection(s,i,col,row);
     }
 }

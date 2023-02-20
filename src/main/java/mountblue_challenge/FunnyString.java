@@ -27,5 +27,17 @@ public class FunnyString {
         }else
             return "Not Funny";
     }
+//    int start = 0;
+//    int end = s.length()-1;
+//        while (start < s.length()-1 && end > 1){
+//        int difF = Math.abs((s.charAt(start)-'a') - (s.charAt(start+1)-'a'));
+//        int difR = Math.abs((s.charAt(end)-'a') - (s.charAt(end-1)-'a'));
+//        if (difF != difR){
+//            return "Not Funny";
+//        }
+//        start++;
+//        end--;
+//    }
+//        return "Funny";
 
 }
